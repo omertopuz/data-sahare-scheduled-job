@@ -1,5 +1,7 @@
 package com.batch.scheduled.model.dbservice;
 
+import java.util.Date;
+
 public class InformEvaluationForms {
     private int applicationId;
     private int versionId;
@@ -8,6 +10,7 @@ public class InformEvaluationForms {
     private String applicantTaxNumber;
     private Integer informedEvaluationFormIdInAdvance;
     private int willBeInformedEvaluationFormId;
+    private Date fileCreationDate;
 
     public int getApplicationId() {
         return applicationId;
@@ -63,5 +66,13 @@ public class InformEvaluationForms {
 
     public void setWillBeInformedEvaluationFormId(int willBeInformedEvaluationFormId) {
         this.willBeInformedEvaluationFormId = willBeInformedEvaluationFormId;
+    }
+
+    public Date getFileCreationDate() {
+        return fileCreationDate;
+    }
+
+    public void setFileCreationDate(Date fileCreationDate) {
+        this.fileCreationDate = fileCreationDate;
     }
 }

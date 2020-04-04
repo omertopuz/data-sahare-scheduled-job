@@ -4,6 +4,9 @@ public class DeleteFileMetaResponse {
     private boolean result;
     private String message;
 
+    public DeleteFileMetaResponse() {
+    }
+
     public boolean isResult() {
         return result;
     }

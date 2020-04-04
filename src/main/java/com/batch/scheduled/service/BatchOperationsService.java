@@ -69,8 +69,8 @@ public class BatchOperationsService {
         }
 
         if (detailEntityUpdateList.size()>0){
-            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"will-be-informed-entities",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
-            LOGGER.info("Method Invoke : db-service/informstate, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
+            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"update-detail-entity-list",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
+            LOGGER.info("Method Invoke : db-service/update-detail-entity-list, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
         }
         LOGGER.info("informAllStates method started");
     }
@@ -89,6 +89,7 @@ public class BatchOperationsService {
                 LOGGER.info("Method Invoke : file-server-service/file-response, request entity " + requestGetFile.toString() + " response : " + responseFileServer.toString());
 
                 GetFileData uploadFileRequest = batchUtils.createGetFileDataObjectForApplicaitonFiles(response);
+                uploadFileRequest.setBlobData(responseFileServer.getBlobData());
                 FileInfo fileInfo =  restTemplate.postForObject(urlCloudFileService+"fileupload",uploadFileRequest, FileInfo.class);
                 LOGGER.info("Method Invoke : cloud-file-service/fileupload, request entity " + uploadFileRequest.toString() + " response : " + fileInfo.toString());
 
@@ -113,13 +114,13 @@ public class BatchOperationsService {
         }
 
         if (detailEntityUpdateList.size()>0){
-            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"will-be-informed-entities",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
-            LOGGER.info("Method Invoke : db-service/informstate, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
+            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"update-detail-entity-list",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
+            LOGGER.info("Method Invoke : db-service/update-detail-entity-list, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
         }
         LOGGER.info("sendApplicationFiles method started");
     }
 
-    @Scheduled(cron="${scheduler.cron.expression.sendapplicationfiles}")
+    @Scheduled(cron="${scheduler.cron.expression.sendevaluationforms}")
     public void sendEvaluationForms(){
         LOGGER.info("================================================================================================================");
         LOGGER.info("sendEvaluationForms method started");
@@ -133,6 +134,7 @@ public class BatchOperationsService {
                 LOGGER.info("Method Invoke : pdf-report-data-service/reportfiledata, request entity " + pdfFileRequest.toString() + " response : " + pdfFileResponse.toString());
 
                 GetFileData uploadFileRequest = batchUtils.createGetFileDataObjectForEvaluationForms(response);
+                uploadFileRequest.setBlobData(pdfFileResponse.getBlobData());
                 FileInfo fileInfo =  restTemplate.postForObject(urlCloudFileService+"fileupload",uploadFileRequest, FileInfo.class);
                 LOGGER.info("Method Invoke : cloud-file-service/fileupload, request entity " + uploadFileRequest.toString() + " response : " + fileInfo.toString());
 
@@ -147,8 +149,8 @@ public class BatchOperationsService {
         }
 
         if (detailEntityUpdateList.size()>0){
-            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"will-be-informed-entities",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
-            LOGGER.info("Method Invoke : db-service/informstate, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
+            ResponseUpdateDetailEntity updateResponse =  restTemplate.postForObject(urlDbService+"update-detail-entity-list",detailEntityUpdateList, ResponseUpdateDetailEntity.class);
+            LOGGER.info("Method Invoke : db-service/update-detail-entity-list, request entity size : " + detailEntityUpdateList.size() + " response : " + updateResponse.toString());
         }
         LOGGER.info("sendEvaluationForms method started");
     }

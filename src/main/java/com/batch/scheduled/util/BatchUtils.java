@@ -7,6 +7,8 @@ import com.batch.scheduled.model.dbservice.InformEvaluationForms;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class BatchUtils {
 
@@ -32,10 +34,16 @@ public class BatchUtils {
         GetFileData createdObject = new GetFileData();
         createdObject.setFolderId(applicationFolderId);
         createdObject.setCategory(applicationCategory);
+        //keyField : _{kategori ; KOSGEB Başvuru Formu, HamleProjeId ; {remoteEntityId} , VergiNo ; {ApplicantTaxNumber},
+        // KOSGEB_BasvuruId ; {entityId}, kurumDosyaId ; {attachmentId}, dosyaOlusumZamani ; {fileCreationDate}, dosyaUploadDate ; {fileUploadDate}}
         String fileName = applicationFileNameFormat.replace("{remoteEntityId}",baseObject.getEntityId()+"").replace("{entityId}",baseObject.getApplicationId()+"");
         String keyField = applicationKeyField.replace("{remoteEntityId}",baseObject.getEntityId()+"")
                 .replace("{ApplicantTaxNumber}",baseObject.getApplicantTaxNumber())
                 .replace("{entityId}",baseObject.getApplicationId()+"")
+                .replace("{attachmentId}",baseObject.getWillBeInformedFileId().toString())
+                .replace("{localFileName}",baseObject.getLocalFileName())
+                .replace("{fileCreationDate}",baseObject.getFileCreationDate().toString())
+                .replace("{fileUploadDate}", LocalDateTime.now().toString())
                 .replace(";",":");
         createdObject.setFileName(fileName);
         createdObject.setKeyField(keyField);
@@ -50,6 +58,9 @@ public class BatchUtils {
         String keyField = evaluationKeyField.replace("{remoteEntityId}",baseObject.getEntityId()+"")
                 .replace("{ApplicantTaxNumber}",baseObject.getApplicantTaxNumber())
                 .replace("{entityId}",baseObject.getApplicationId()+"")
+                .replace("{attachmentId}",baseObject.getWillBeInformedEvaluationFormId()+"")
+                .replace("{fileCreationDate}",baseObject.getFileCreationDate().toString())
+                .replace("{fileUploadDate}", LocalDateTime.now().toString())
                 .replace(";",":");
         createdObject.setFileName(fileName);
         createdObject.setKeyField(keyField);

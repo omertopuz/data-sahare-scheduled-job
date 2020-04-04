@@ -9,6 +9,9 @@ public class InformStateResponse {
         this.message = message;
     }
 
+    public InformStateResponse() {
+    }
+
     public boolean isResult() {
         return result;
     }

@@ -1,5 +1,7 @@
 package com.batch.scheduled.model.dbservice;
 
+import java.util.Date;
+
 public class InformApplicationFiles {
     private int applicationId;
     private int versionId;
@@ -8,6 +10,8 @@ public class InformApplicationFiles {
     private String applicantTaxNumber;
     private Integer informedFileIdInAdvance;
     private Long willBeInformedFileId;
+    private Date fileCreationDate;
+    private String localFileName;
 
     public int getApplicationId() {
         return applicationId;
@@ -63,5 +67,21 @@ public class InformApplicationFiles {
 
     public void setWillBeInformedFileId(Long willBeInformedFileId) {
         this.willBeInformedFileId = willBeInformedFileId;
+    }
+
+    public Date getFileCreationDate() {
+        return fileCreationDate;
+    }
+
+    public void setFileCreationDate(Date fileCreationDate) {
+        this.fileCreationDate = fileCreationDate;
+    }
+
+    public String getLocalFileName() {
+        return localFileName;
+    }
+
+    public void setLocalFileName(String localFileName) {
+        this.localFileName = localFileName;
     }
 }

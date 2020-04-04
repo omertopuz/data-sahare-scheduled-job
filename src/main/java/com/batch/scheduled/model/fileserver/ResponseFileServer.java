@@ -9,6 +9,9 @@ public class ResponseFileServer {
         this.fileName = fileName;
     }
 
+    public ResponseFileServer() {
+    }
+
     public byte[] getBlobData() {
         return blobData;
     }
