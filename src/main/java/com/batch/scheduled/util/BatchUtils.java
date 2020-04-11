@@ -52,8 +52,8 @@ public class BatchUtils {
 
     public GetFileData createGetFileDataObjectForEvaluationForms(InformEvaluationForms baseObject){
         GetFileData createdObject = new GetFileData();
-        createdObject.setFolderId(applicationFolderId);
-        createdObject.setCategory(applicationCategory);
+        createdObject.setFolderId(evaluationformFolderId);
+        createdObject.setCategory(evaluationCategory);
         String fileName = evaluationFileNameFormat.replace("{remoteEntityId}",baseObject.getEntityId()+"").replace("{entityId}",baseObject.getApplicationId()+"");
         String keyField = evaluationKeyField.replace("{remoteEntityId}",baseObject.getEntityId()+"")
                 .replace("{ApplicantTaxNumber}",baseObject.getApplicantTaxNumber())
